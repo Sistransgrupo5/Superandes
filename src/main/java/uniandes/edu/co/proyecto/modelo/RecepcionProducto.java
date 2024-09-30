@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="recepcionesProductos")
-public class RecepcionProductos {
+public class RecepcionProducto {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -17,12 +17,12 @@ public class RecepcionProductos {
     private Integer id;
     private Date fechaRecepcion;
 
-    public RecepcionProductos(Date fechaRecepcion)
+    public RecepcionProducto(Date fechaRecepcion)
     {
         this.fechaRecepcion = fechaRecepcion;
     }
 
-    public RecepcionProductos()
+    public RecepcionProducto()
     {;}
 
     public Integer getId() {

@@ -28,12 +28,12 @@ public interface BodegaRepository extends JpaRepository<Bodega, Integer>{
     @Modifying
     @Transactional
     @Query(value = "UPDATE bodegas SET nombre=:nombre, tamanio=:tamanio WHERE id=:id", nativeQuery = true)
-    void actualizarBodega(@Param("id") String id, @Param("nombre") String nombre, @Param("tamanio") Integer tamanio);
+    void actualizarBodega(@Param("id") int id, @Param("nombre") String nombre, @Param("tamanio") Integer tamanio);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM bodegas WHERE id = :id", nativeQuery = true)
-    void eliminarBodega(@Param("id") String id);
+    void eliminarBodega(@Param("id") int id);
 
 
 

@@ -22,11 +22,11 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
     @Modifying
     @Transactional
     @Query(value = "UPDATE categorias SET nombre=:nombre, descripcion=:descripcion WHERE codigo=:codigo", nativeQuery = true)
-    void actualizarCategoria(@Param("codigo") String codigo, @Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("caracteristicas") String caracteristicas);
+    void actualizarCategoria(@Param("codigo") int codigo, @Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("caracteristicas") String caracteristicas);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM categorias WHERE codigo = :codigo", nativeQuery = true)
-    void eliminarCategoria(@Param("codigo") String codigo);
+    void eliminarCategoria(@Param("codigo") int codigo);
     
 }
