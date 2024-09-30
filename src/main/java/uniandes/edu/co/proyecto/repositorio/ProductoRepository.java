@@ -16,7 +16,7 @@ public interface ProductoRepository extends JpaRepository<Producto, String>{
     Collection<Producto> darProductos();
     
     @Query(value = "SELECT * FROM productos WHERE codigoBarras = :codigoBarras", nativeQuery=true)
-Producto darProducto(@Param("codigoBarras") String codigoBarras);
+    Producto darProducto(@Param("codigoBarras") String codigoBarras);
 
     @Modifying
     @Transactional
@@ -26,12 +26,12 @@ Producto darProducto(@Param("codigoBarras") String codigoBarras);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE productos SET nombre=:nombre, tamanio=:tamanio WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE productos SET nombre=:nombre, precioUnitarioVenta=:precioUnitarioVenta, presentacion=:presentacion, cantidadPresentacion=:cantidadPresentacion, unidadMedida=:unidadMedida, fechaExpiracion=:fechaExpiracion  WHERE codigoBarras=:codigoBarras", nativeQuery = true)
     void actualizarProducto(@Param("codigoBarras") String codigoBarras, @Param("nombre") String nombre, @Param("precioUnitarioVenta") Integer precioUnitarioVenta, @Param("presentacion") String presentacion, @Param("cantidadPresentacion") Integer cantidadPresentacion, @Param("unidadMedida") String unidadMedida, @Param("fechaExpiracion") Date fechaExpiracion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM productos WHERE id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM productos WHERE codigoBarras = :codigoBarras", nativeQuery = true)
     void eliminarProducto(@Param("codigoBarras") String codigoBarras);
     
 }
