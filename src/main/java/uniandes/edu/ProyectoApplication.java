@@ -1,4 +1,4 @@
-package uniandes.edu.co.proyecto;
+package uniandes.edu;
 
 import java.util.Collection;
 
@@ -11,13 +11,13 @@ import uniandes.edu.co.proyecto.modelo.Bodega;
 import uniandes.edu.co.proyecto.repositorio.BodegaRepository;
 
 @SpringBootApplication
-public class ParranderosApplication implements CommandLineRunner{
+public class ProyectoApplication implements CommandLineRunner{
 
 	@Autowired
 	private BodegaRepository bodegaRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(ParranderosApplication.class, args);
+		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
 	public void run(String... arg)
@@ -28,4 +28,5 @@ public class ParranderosApplication implements CommandLineRunner{
 			System.out.println(b);
 		}
 	}
+
 }
