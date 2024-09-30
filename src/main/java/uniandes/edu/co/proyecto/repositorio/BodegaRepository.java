@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Bodega;
 
 public interface BodegaRepository extends JpaRepository<Bodega, Integer>{
 
-    @Query(value = "SELECT * FROM bodegas")
+    @Query(value = "SELECT * FROM bodegas", nativeQuery = true)
     Collection<Bodega> darBodegas();
     
     @Query(value = "SELECT * FROM bodegas WHERE id= : id", nativeQuery=true)

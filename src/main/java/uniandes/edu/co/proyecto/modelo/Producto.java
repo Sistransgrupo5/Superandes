@@ -90,7 +90,4 @@ public class Producto {
     public void setFechaExpiracion(Date fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
     }
-
-    
-    
 }
