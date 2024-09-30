@@ -12,11 +12,11 @@ import uniandes.edu.co.proyecto.modelo.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, String>{
 
-    @Query(value = "SELECT * FROM productos")
+    @Query(value = "SELECT * FROM productos", nativeQuery = true)
     Collection<Producto> darProductos();
     
-    @Query(value = "SELECT * FROM productos WHERE codigoBarras= : codigoBarras", nativeQuery=true)
-    Producto darProducto(@Param("codigoBarras") int codigoBarras);
+    @Query(value = "SELECT * FROM productos WHERE codigoBarras = :codigoBarras", nativeQuery=true)
+Producto darProducto(@Param("codigoBarras") String codigoBarras);
 
     @Modifying
     @Transactional

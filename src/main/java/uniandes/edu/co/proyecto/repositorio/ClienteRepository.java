@@ -12,9 +12,9 @@ import uniandes.edu.co.proyecto.modelo.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
-    @Query(value = "SELECT * FROM clientes")
+    @Query(value = "SELECT * FROM clientes", nativeQuery = true)
     Collection<Cliente> darClientes();
-    
+
     @Query(value = "SELECT * FROM clientes WHERE cedula= : cedula", nativeQuery=true)
     Cliente darCliente(@Param("cedula") int cedula);
 

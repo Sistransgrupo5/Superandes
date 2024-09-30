@@ -14,7 +14,7 @@ import uniandes.edu.co.proyecto.modelo.Venta;
 
 public interface VentaRepositorio extends JpaRepository<Venta, Integer>{
 
-    @Query(value = "SELECT * FROM ventas")
+    @Query(value = "SELECT * FROM ventas", nativeQuery = true)
     Collection<Venta> darVentas();
     
     @Query(value = "SELECT * FROM ventas WHERE id= : id", nativeQuery=true)

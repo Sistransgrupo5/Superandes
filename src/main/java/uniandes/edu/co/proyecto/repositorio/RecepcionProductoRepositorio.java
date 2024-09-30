@@ -12,7 +12,7 @@ import uniandes.edu.co.proyecto.modelo.RecepcionProducto;
 
 public interface RecepcionProductoRepositorio extends JpaRepository<RecepcionProducto, Integer>{
     
-    @Query(value = "SELECT * FROM recepcionesProductos")
+    @Query(value = "SELECT * FROM recepcionesProductos", nativeQuery = true)
     Collection<RecepcionProducto> darRecepcionProductos();
     
     @Query(value = "SELECT * FROM recepcionesProductos WHERE id= : id", nativeQuery=true)
