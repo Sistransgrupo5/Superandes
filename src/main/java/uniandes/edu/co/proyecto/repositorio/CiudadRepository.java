@@ -16,7 +16,7 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Integer>{
     Collection<Ciudad> darCiudades();
     
     @Query(value = "SELECT * FROM ciudades WHERE codigo= : codigo", nativeQuery=true)
-    Ciudad darCiudad(@Param("codigo") int codigo);
+    Ciudad darCiudad(@Param("codigo") long codigo);
 
     @Modifying
     @Transactional
@@ -27,11 +27,11 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Integer>{
     @Modifying
     @Transactional
     @Query(value = "UPDATE ciudades SET nombre=:nombre WHERE codigo=:codigo", nativeQuery = true)
-    void actualizarCiudad(@Param("codigo") int codigo, @Param("nombre") String nombre);
+    void actualizarCiudad(@Param("codigo") long codigo, @Param("nombre") String nombre);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM ciudades WHERE codigo = :codigo", nativeQuery = true)
-    void eliminarCiudad(@Param("codigo") int codigo);
+    void eliminarCiudad(@Param("codigo") long codigo);
     
 }
