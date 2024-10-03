@@ -1,17 +1,17 @@
 -- Tabla Ciudad
 CREATE TABLE Ciudad (
     id_ciudad INT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+    nombre VARCHAR2(100) NOT NULL,
     codigo INT NOT NULL
 );
 
 -- Tabla Sucursal
 CREATE TABLE Sucursal (
     id_sucursal INT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    tama駉 DECIMAL(10, 2) NOT NULL,
-    direccion VARCHAR(255) NOT NULL,
-    telefono VARCHAR(20) NOT NULL,
+    nombre VARCHAR2(100) NOT NULL,
+    tamanio DECIMAL(10, 2) NOT NULL,
+    direccion VARCHAR2(255) NOT NULL,
+    telefono VARCHAR2(20) NOT NULL,
     id_ciudad INT,
     FOREIGN KEY (id_ciudad) REFERENCES Ciudad(id_ciudad)
 );
@@ -35,12 +35,12 @@ CREATE TABLE EspecificacionEmpacado (
 -- Tabla Producto
 CREATE TABLE Producto (
     id_producto INT PRIMARY KEY,
-    codigoBarras VARCHAR(50) UNIQUE NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
+    codigoBarras VARCHAR2(50) UNIQUE NOT NULL,
+    nombre VARCHAR2(100) NOT NULL,
     precioUnitarioVenta DECIMAL(10, 2) NOT NULL,
-    presentacion VARCHAR(50) NOT NULL,
+    presentacion VARCHAR2(50) NOT NULL,
     cantidadPresentacion INT NOT NULL,
-    unidadMedida VARCHAR(20) NOT NULL,
+    unidadMedida VARCHAR2(20) NOT NULL,
     fechaExpiracion DATE,
     id_especificacionEmpacado INT,
     FOREIGN KEY (id_especificacionEmpacado) REFERENCES EspecificacionEmpacado(id_especificacionEmpacado)
@@ -49,8 +49,8 @@ CREATE TABLE Producto (
 -- Tabla Bodega
 CREATE TABLE Bodega (
     id_bodega INT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    tama駉 DECIMAL(10, 2) NOT NULL,
+    nombre VARCHAR2(100) NOT NULL,
+    tamanio DECIMAL(10, 2) NOT NULL,
     id_sucursal INT,
     id_infoExtraBodega INT,
     FOREIGN KEY (id_sucursal) REFERENCES Sucursal(id_sucursal),
@@ -62,8 +62,8 @@ CREATE TABLE DetalleCostoBodega (
     id_detalleCostoBodega INT PRIMARY KEY,
     costoUnitarioBodega DECIMAL(10, 2) NOT NULL,
     cantidadExistencias INT NOT NULL,
-    id_infoExtraBodega INT,
-    FOREIGN KEY (id_infoExtraBodega) REFERENCES InfoExtraBodega(id_infoExtraBodega)
+    id_bodega INT NOT NULL,
+    FOREIGN KEY (id_bodega) REFERENCES Bodega(id_bodega)  -- Referencia a Bodega
 );
 
 -- Tabla ProductoPerecedero (Herencia de Producto)
@@ -82,9 +82,9 @@ CREATE TABLE InfoExtraOrden (
 
 -- Tabla OrdenCompra
 CREATE TABLE OrdenCompra (
-    id_OrdenCompra INT PRIMARY KEY,
+    id_ordenCompra INT PRIMARY KEY,
     fechaCreacion DATE NOT NULL,
-    estado VARCHAR(50) NOT NULL,
+    estado VARCHAR2(50) NOT NULL,
     fechaEntrega DATE,
     id_infoExtraOrden INT,
     FOREIGN KEY (id_infoExtraOrden) REFERENCES InfoExtraOrden(id_infoExtraOrden)
@@ -94,8 +94,10 @@ CREATE TABLE OrdenCompra (
 CREATE TABLE RecepcionProducto (
     id_recepcionProducto INT PRIMARY KEY,
     fechaRecepcion DATE NOT NULL,
-    id_producto INT,
-    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
+    id_ordenCompra INT NOT NULL,
+    id_bodega INT NOT NULL,
+    FOREIGN KEY (id_ordenCompra) REFERENCES OrdenCompra(id_ordenCompra),
+    FOREIGN KEY (id_bodega) REFERENCES Bodega(id_bodega)
 );
 
 -- Tabla InfoExtraProveedor
@@ -106,20 +108,20 @@ CREATE TABLE InfoExtraProveedor (
 
 -- Tabla Proveedor
 CREATE TABLE Proveedor (
-    NIT VARCHAR(20) PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    direccion VARCHAR(255) NOT NULL,
-    nombre_contacto VARCHAR(100) NOT NULL,
-    telefono VARCHAR(20) NOT NULL,
+    NIT VARCHAR2(20) PRIMARY KEY,
+    nombre VARCHAR2(100) NOT NULL,
+    direccion VARCHAR2(255) NOT NULL,
+    nombre_contacto VARCHAR2(100) NOT NULL,
+    telefono VARCHAR2(20) NOT NULL,
     id_infoExtraProveedor INT,
-    FOREIGN KEY (id_infoExtraProveedor) REFERENCES InfoExtraProveedor(id_infoExtraProveedor)
+    FOREIGN KEY (id_infoExtraProveedor) REFERENCES InfoExtraProveedor(id_infoExtraProveedor)  -- Correcto, se ha agregado el ID
 );
 
 -- Tabla Cliente
 CREATE TABLE Cliente (
     id_cliente INT PRIMARY KEY,
-    cedula VARCHAR(20) NOT NULL UNIQUE,
-    nombre VARCHAR(100) NOT NULL
+    cedula VARCHAR2(20) NOT NULL UNIQUE,
+    nombre VARCHAR2(100) NOT NULL
 );
 
 -- Tabla InfoExtraVenta
@@ -142,39 +144,97 @@ CREATE TABLE Venta (
 -- Tabla Categoria
 CREATE TABLE Categoria (
     codigo INT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
-    caracteristicas VARCHAR(255) NOT NULL,
-    id_producto INT,
-    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
+    nombre VARCHAR2(100) NOT NULL,
+    descripcion VARCHAR2(255) NOT NULL,
+    caracteristicas VARCHAR2(255) NOT NULL
 );
 
--- Relaci髇 entre Producto y Categoria
-ALTER TABLE Categoria
-ADD CONSTRAINT fk_producto_categoria
-FOREIGN KEY (id_producto) REFERENCES Producto(id_producto);
+-- Tabla ProductoCategoria (Relaci贸n entre Producto y Categoria)
+CREATE TABLE ProductoCategoria (
+    id_producto INT,
+    codigo_categoria INT,
+    PRIMARY KEY (id_producto, codigo_categoria),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (codigo_categoria) REFERENCES Categoria(codigo)
+);
 
--- Relaci髇 entre Producto y DetalleCostoBodega
-ALTER TABLE DetalleCostoBodega
-ADD CONSTRAINT fk_producto_detallecostobodega
-FOREIGN KEY (id_infoExtraBodega) REFERENCES InfoExtraBodega(id_infoExtraBodega);
+-- Tabla_Clase de asociaci贸n: OrdenCompra - InfoExtraOrden
+CREATE TABLE OrdenCompra_InfoExtraOrden (
+    id_ordenCompra INT,
+    id_infoExtraOrden INT,
+    PRIMARY KEY (id_ordenCompra, id_infoExtraOrden),
+    FOREIGN KEY (id_ordenCompra) REFERENCES OrdenCompra(id_ordenCompra),
+    FOREIGN KEY (id_infoExtraOrden) REFERENCES InfoExtraOrden(id_infoExtraOrden)
+);
 
--- Relaci髇 entre Proveedor e InfoExtraProveedor
-ALTER TABLE Proveedor
-ADD CONSTRAINT fk_proveedor_infoextraproveedor
-FOREIGN KEY (id_infoExtraProveedor) REFERENCES InfoExtraProveedor(id_infoExtraProveedor);
+-- Tabla_Clase de asociaci贸n: Producto - InfoExtraOrden
+CREATE TABLE Producto_InfoExtraOrden (
+    id_producto INT,
+    id_infoExtraOrden INT,
+    PRIMARY KEY (id_producto, id_infoExtraOrden),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (id_infoExtraOrden) REFERENCES InfoExtraOrden(id_infoExtraOrden)
+);
 
--- Relaci髇 entre Venta e InfoExtraVenta
-ALTER TABLE Venta
-ADD CONSTRAINT fk_venta_infoextraventa
-FOREIGN KEY (id_infoExtraVenta) REFERENCES InfoExtraVenta(id_infoExtraVenta);
+-- Tabla_Clase de asociaci贸n: Bodega - InfoExtraBodega
+CREATE TABLE Bodega_InfoExtraBodega (
+    id_bodega INT,
+    id_infoExtraBodega INT,
+    PRIMARY KEY (id_bodega, id_infoExtraBodega),
+    FOREIGN KEY (id_bodega) REFERENCES Bodega(id_bodega),
+    FOREIGN KEY (id_infoExtraBodega) REFERENCES InfoExtraBodega(id_infoExtraBodega)
+);
 
--- Relaci髇 entre Venta y Cliente
-ALTER TABLE Venta
-ADD CONSTRAINT fk_venta_cliente
-FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente);
+-- Tabla_Clase de asociaci贸n: Producto - InfoExtraBodega
+CREATE TABLE Producto_InfoExtraBodega (
+    id_producto INT,
+    id_infoExtraBodega INT,
+    PRIMARY KEY (id_producto, id_infoExtraBodega),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (id_infoExtraBodega) REFERENCES InfoExtraBodega(id_infoExtraBodega)
+);
 
--- Relaci髇 entre OrdenCompra e InfoExtraOrden
-ALTER TABLE OrdenCompra
-ADD CONSTRAINT fk_ordencompra_infoextraorden
-FOREIGN KEY (id_infoExtraOrden) REFERENCES InfoExtraOrden(id_infoExtraOrden);
+-- Tabla_Clase de asociaci贸n: InfoExtraBodega - DetalleCostosBodega
+CREATE TABLE InfoExtraBodega_DetalleCostosBodega (
+    id_infoExtraBodega INT,
+    id_detalleCostoBodega INT,
+    PRIMARY KEY (id_infoExtraBodega, id_detalleCostoBodega),
+    FOREIGN KEY (id_infoExtraBodega) REFERENCES InfoExtraBodega(id_infoExtraBodega),
+    FOREIGN KEY (id_detalleCostoBodega) REFERENCES DetalleCostoBodega(id_detalleCostoBodega)
+);
+
+-- Tabla_Clase de asociaci贸n: Producto - InfoExtraProveedor
+CREATE TABLE Producto_InfoExtraProveedor (
+    id_producto INT,
+    id_infoExtraProveedor INT,
+    PRIMARY KEY (id_producto, id_infoExtraProveedor),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (id_infoExtraProveedor) REFERENCES InfoExtraProveedor(id_infoExtraProveedor)
+);
+
+-- Tabla_Clase de asociaci贸n: Proveedor - InfoExtraProveedor
+CREATE TABLE Proveedor_InfoExtraProveedor (
+    NIT VARCHAR2(20),
+    id_infoExtraProveedor INT,
+    PRIMARY KEY (NIT, id_infoExtraProveedor),
+    FOREIGN KEY (NIT) REFERENCES Proveedor(NIT),
+    FOREIGN KEY (id_infoExtraProveedor) REFERENCES InfoExtraProveedor(id_infoExtraProveedor)
+);
+
+-- Tabla_Clase de asociaci贸n: Venta - InfoExtraVenta
+CREATE TABLE Venta_InfoExtraVenta (
+    id_venta INT,
+    id_infoExtraVenta INT,
+    PRIMARY KEY (id_venta, id_infoExtraVenta),
+    FOREIGN KEY (id_venta) REFERENCES Venta(id_venta),
+    FOREIGN KEY (id_infoExtraVenta) REFERENCES InfoExtraVenta(id_infoExtraVenta)
+);
+
+-- Tabla_Clase de asociaci贸n: Producto - InfoExtraVenta
+CREATE TABLE Producto_InfoExtraVenta (
+    id_producto INT,
+    id_infoExtraVenta INT,
+    PRIMARY KEY (id_producto, id_infoExtraVenta),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (id_infoExtraVenta) REFERENCES InfoExtraVenta(id_infoExtraVenta)
+);
