@@ -1,18 +1,19 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="productos")
-public class Producto {
+@Table(name = "productos")
+public class ProductoEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private String codigoBarras;
     private String nombre;
@@ -22,8 +23,7 @@ public class Producto {
     private String unidadMedida;
     private Date fechaExpiracion;
 
-    public Producto(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion)
-    {
+    public ProductoEntity(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion) {
         this.nombre = nombre;
         this.precioUnitarioVenta = precioUnitarioVenta;
         this.presentacion = presentacion;
@@ -32,8 +32,8 @@ public class Producto {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public Producto()
-    {;}
+    public ProductoEntity() {
+    }
 
     public String getCodigoBarras() {
         return codigoBarras;

@@ -6,69 +6,67 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name="sucursales")
-public class Sucursal {
+@Table(name = "proveedores")
+public class ProveedorEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer id;
+    private String NIT;
     private String nombre;
-    private Integer tamanio;
     private String direccion;
+    private String nombre_contacto;
     private String telefono;
 
-    public Sucursal(String nombre,Integer tamanio,String direccion,String telefono)
-    {
+    public ProveedorEntity(String nombre, String direccion, String nombre_contacto, String telefono) {
         this.nombre = nombre;
-        this.tamanio = tamanio;
         this.direccion = direccion;
+        this.nombre_contacto = nombre_contacto;
         this.telefono = telefono;
     }
 
-    public Sucursal()
-    {;}
+    public ProveedorEntity() {
+    }
 
-    public Integer getId() {
-        return id;
+    public String getNIT() {
+        return NIT;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public Integer getTamanio() {
-        return tamanio;
-    }
-
     public String getDireccion() {
         return direccion;
+    }
+
+    public String getNombre_contacto() {
+        return nombre_contacto;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNIT(String nIT) {
+        NIT = nIT;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setTamanio(Integer tamanio) {
-        this.tamanio = tamanio;
-    }
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public void setNombre_contacto(String nombre_contacto) {
+        this.nombre_contacto = nombre_contacto;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
 }

@@ -7,25 +7,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="bodegas")
-public class Bodega {
+@Table(name = "bodegas")
+public class BodegaEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer id;
     private String nombre;
     private Integer tamanio;
 
-    public Bodega(String nombre, Integer tamanio)
-    {
-        this.nombre=nombre;
-        this.tamanio=tamanio;
+    public BodegaEntity(String nombre, Integer tamanio) {
+        this.nombre = nombre;
+        this.tamanio = tamanio;
 
     }
-    
-    public Bodega()
-    {;}
+
+    public BodegaEntity() {
+    }
 
     public Integer getId() {
         return id;
@@ -50,6 +49,5 @@ public class Bodega {
     public void setTamanio(Integer tamanio) {
         this.tamanio = tamanio;
     }
-
 
 }

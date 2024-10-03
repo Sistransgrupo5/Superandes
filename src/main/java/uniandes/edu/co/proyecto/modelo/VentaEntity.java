@@ -1,4 +1,5 @@
 package uniandes.edu.co.proyecto.modelo;
+
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -8,22 +9,21 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ventas")
-public class Venta {
+@Table(name = "ventas")
+public class VentaEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer id;
     private Date fecha;
-    
-    public Venta(Integer id, Date fecha)
-    {
+
+    public VentaEntity(Integer id, Date fecha) {
         this.fecha = fecha;
     }
 
-    public Venta()
-    {;}
+    public VentaEntity() {
+    }
 
     public Integer getId() {
         return id;
@@ -41,5 +41,4 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    
 }

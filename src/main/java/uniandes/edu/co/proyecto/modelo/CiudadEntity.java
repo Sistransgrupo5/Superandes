@@ -6,41 +6,38 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name="clientes")
-public class Cliente {
+@Table(name = "ciudades")
+public class CiudadEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer cedula;
+    private Integer codigo;
     private String nombre;
 
-    public Cliente(Integer cedula,String nombre)
-    {
+    public CiudadEntity(Integer codigo, String nombre) {
+        this.codigo = codigo;
         this.nombre = nombre;
     }
 
-    public Cliente()
-    {;}
+    public CiudadEntity() {
+    }
 
-    public Integer getCedula() {
-        return cedula;
+    public Integer getCodigo() {
+        return codigo;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setCedula(Integer cedula) {
-        this.cedula = cedula;
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    
 
 }

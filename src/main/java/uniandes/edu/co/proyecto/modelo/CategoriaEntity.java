@@ -7,26 +7,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="categorias")
-public class Categoria {
+@Table(name = "categorias")
+public class CategoriaEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer codigo;
     private String nombre;
     private String descripcion;
     private String caracteristicas;
 
-    public Categoria(String nombre, String descripcion,String caracteristicas)
-    {
+    public CategoriaEntity(String nombre, String descripcion, String caracteristicas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.caracteristicas = caracteristicas;
     }
-    
-    public Categoria()
-    {;}
+
+    public CategoriaEntity() {
+    }
 
     public Integer getCodigo() {
         return codigo;
@@ -59,7 +58,5 @@ public class Categoria {
     public void setCaracteristicas(String caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
-
-    
 
 }
