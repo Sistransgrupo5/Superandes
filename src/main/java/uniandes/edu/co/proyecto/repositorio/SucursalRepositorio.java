@@ -8,21 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Sucursal;
+import uniandes.edu.co.proyecto.modelo.SucursalEntity;
 
-public interface SucursalRepositorio extends JpaRepository<Sucursal, Integer>{
+public interface SucursalRepositorio extends JpaRepository<SucursalEntity, Integer> {
 
     @Query(value = "SELECT * FROM sucursales", nativeQuery = true)
-    Collection<Sucursal> darSucursales();
-    
-    @Query(value = "SELECT * FROM sucursales WHERE id= : id", nativeQuery=true)
-    Sucursal darSucursal(@Param("id") int id);
+    Collection<SucursalEntity> darSucursales();
+
+    @Query(value = "SELECT * FROM sucursales WHERE id= : id", nativeQuery = true)
+    SucursalEntity darSucursal(@Param("id") int id);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO sucursales(id,nombre,tamanio,direccion,telefono) VALUES(proyecto_sequence.nextval, :nombre, :tamanio, :direccion, :telefono)", nativeQuery = true)
     void insertarSucursal(@Param("nombre") String nombre, @Param("tamanio") Integer tamanio, @Param("direccion") String direccion, @Param("telefono") String telefono);
-
 
     @Modifying
     @Transactional
@@ -33,5 +32,5 @@ public interface SucursalRepositorio extends JpaRepository<Sucursal, Integer>{
     @Transactional
     @Query(value = "DELETE FROM sucursales WHERE id = :id", nativeQuery = true)
     void eliminarSucursal(@Param("id") int id);
-    
+
 }

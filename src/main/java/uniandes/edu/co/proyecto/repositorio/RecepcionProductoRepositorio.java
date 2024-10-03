@@ -2,27 +2,27 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
 import java.util.Date;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.RecepcionProducto;
+import uniandes.edu.co.proyecto.modelo.RecepcionProductoEntity;
 
-public interface RecepcionProductoRepositorio extends JpaRepository<RecepcionProducto, Integer>{
-    
+public interface RecepcionProductoRepositorio extends JpaRepository<RecepcionProductoEntity, Integer> {
+
     @Query(value = "SELECT * FROM recepcionesProductos", nativeQuery = true)
-    Collection<RecepcionProducto> darRecepcionProductos();
-    
-    @Query(value = "SELECT * FROM recepcionesProductos WHERE id= : id", nativeQuery=true)
-    RecepcionProducto darRecepcionProducto(@Param("id") int id);
+    Collection<RecepcionProductoEntity> darRecepcionProductos();
+
+    @Query(value = "SELECT * FROM recepcionesProductos WHERE id= : id", nativeQuery = true)
+    RecepcionProductoEntity darRecepcionProducto(@Param("id") int id);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO recepcionesProductos(id,fechaRecepcion) VALUES(proyecto_sequence.nextval, :fechaRecepcion)", nativeQuery = true)
     void insertarRecepcionProducto(@Param("fechaRecepcion") Date fechaRecepcion);
-
 
     @Modifying
     @Transactional

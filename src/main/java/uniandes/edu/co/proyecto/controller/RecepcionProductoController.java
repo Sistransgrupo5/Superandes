@@ -1,14 +1,21 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import uniandes.edu.co.proyecto.modelo.RecepcionProducto;
+import uniandes.edu.co.proyecto.modelo.RecepcionProductoEntity;
 import uniandes.edu.co.proyecto.repositorio.RecepcionProductoRepositorio;
-
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/recepciones-productos")
@@ -19,9 +26,9 @@ public class RecepcionProductoController {
 
     // Obtener todas las recepciones de productos
     @GetMapping
-    public ResponseEntity<Collection<RecepcionProducto>> darRecepcionProductos() {
+    public ResponseEntity<Collection<RecepcionProductoEntity>> darRecepcionProductos() {
         try {
-            Collection<RecepcionProducto> recepciones = recepcionProductoRepositorio.darRecepcionProductos();
+            Collection<RecepcionProductoEntity> recepciones = recepcionProductoRepositorio.darRecepcionProductos();
             if (recepciones.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -33,9 +40,9 @@ public class RecepcionProductoController {
 
     // Obtener una recepción de producto por ID
     @GetMapping("/{id}")
-    public ResponseEntity<RecepcionProducto> darRecepcionProducto(@PathVariable("id") int id) {
+    public ResponseEntity<RecepcionProductoEntity> darRecepcionProducto(@PathVariable("id") int id) {
         try {
-            RecepcionProducto recepcion = recepcionProductoRepositorio.darRecepcionProducto(id);
+            RecepcionProductoEntity recepcion = recepcionProductoRepositorio.darRecepcionProducto(id);
             if (recepcion != null) {
                 return new ResponseEntity<>(recepcion, HttpStatus.OK);
             } else {
@@ -48,7 +55,7 @@ public class RecepcionProductoController {
 
     // Insertar una nueva recepción de producto
     @PostMapping("/new")
-    public ResponseEntity<String> insertarRecepcionProducto(@RequestBody RecepcionProducto recepcionProducto) {
+    public ResponseEntity<String> insertarRecepcionProducto(@RequestBody RecepcionProductoEntity recepcionProducto) {
         try {
             recepcionProductoRepositorio.insertarRecepcionProducto(recepcionProducto.getFechaRecepcion());
             return new ResponseEntity<>("Recepción de producto creada exitosamente", HttpStatus.CREATED);
@@ -59,7 +66,7 @@ public class RecepcionProductoController {
 
     // Actualizar una recepción de producto existente
     @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarRecepcionProducto(@PathVariable("id") int id, @RequestBody RecepcionProducto recepcionProducto) {
+    public ResponseEntity<String> actualizarRecepcionProducto(@PathVariable("id") int id, @RequestBody RecepcionProductoEntity recepcionProducto) {
         try {
             recepcionProductoRepositorio.actualizarRecepcionProducto(id, recepcionProducto.getFechaRecepcion());
             return new ResponseEntity<>("Recepción de producto actualizada exitosamente", HttpStatus.OK);

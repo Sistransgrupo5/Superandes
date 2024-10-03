@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import uniandes.edu.co.proyecto.modelo.OrdenCompra;
+import uniandes.edu.co.proyecto.modelo.OrdenCompraEntity;
 import uniandes.edu.co.proyecto.repositorio.OrdenCompraRepository;
 
 @RestController
@@ -22,13 +22,13 @@ public class OrdenCompraController {
 
     // Obtener todas las órdenes de compra
     @GetMapping("/ordenesCompra")
-    public Collection<OrdenCompra> ordenesCompra() {
+    public Collection<OrdenCompraEntity> ordenesCompra() {
         return ordenCompraRepository.darOrdenesCompra();
     }
 
     // Guardar una nueva orden de compra
     @PostMapping("/ordenesCompra/new/save")
-    public ResponseEntity<String> ordenCompraGuardar(@RequestBody OrdenCompra ordenCompra) {
+    public ResponseEntity<String> ordenCompraGuardar(@RequestBody OrdenCompraEntity ordenCompra) {
         try {
             ordenCompraRepository.insertarOrdenCompra(ordenCompra.getFechaCreacion(), ordenCompra.getEstado(), ordenCompra.getFechaEntrega());
             return new ResponseEntity<>("Orden de compra creada exitosamente", HttpStatus.CREATED);
@@ -39,7 +39,7 @@ public class OrdenCompraController {
 
     // Editar una orden de compra existente
     @PostMapping("/ordenesCompra/{id}/edit/save")
-    public ResponseEntity<String> ordenCompraEditarGuardar(@PathVariable("id") int id, @RequestBody OrdenCompra ordenCompra) {
+    public ResponseEntity<String> ordenCompraEditarGuardar(@PathVariable("id") int id, @RequestBody OrdenCompraEntity ordenCompra) {
         try {
             ordenCompraRepository.actualizarOrdenCompra(id, ordenCompra.getFechaCreacion(), ordenCompra.getEstado(), ordenCompra.getFechaEntrega());
             return new ResponseEntity<>("Orden de compra actualizada exitosamente", HttpStatus.OK);

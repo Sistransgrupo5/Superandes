@@ -1,12 +1,20 @@
 package uniandes.edu.co.proyecto.controller;
 
 import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import uniandes.edu.co.proyecto.modelo.Producto;
+import uniandes.edu.co.proyecto.modelo.ProductoEntity;
 import uniandes.edu.co.proyecto.repositorio.ProductoRepository;
 
 @RestController
@@ -18,9 +26,9 @@ public class ProductoController {
 
     // Obtener todos los productos
     @GetMapping("/all")
-    public ResponseEntity<Collection<Producto>> darProductos() {
+    public ResponseEntity<Collection<ProductoEntity>> darProductos() {
         try {
-            Collection<Producto> productos = productoRepository.darProductos();
+            Collection<ProductoEntity> productos = productoRepository.darProductos();
             return new ResponseEntity<>(productos, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -29,9 +37,9 @@ public class ProductoController {
 
     // Obtener un producto por código de barras
     @GetMapping("/{codigoBarras}")
-    public ResponseEntity<Producto> darProducto(@PathVariable("codigoBarras") String codigoBarras) {
+    public ResponseEntity<ProductoEntity> darProducto(@PathVariable("codigoBarras") String codigoBarras) {
         try {
-            Producto producto = productoRepository.darProducto(codigoBarras);
+            ProductoEntity producto = productoRepository.darProducto(codigoBarras);
             if (producto != null) {
                 return new ResponseEntity<>(producto, HttpStatus.OK);
             } else {
@@ -44,7 +52,7 @@ public class ProductoController {
 
     // Insertar un nuevo producto
     @PostMapping("/new")
-    public ResponseEntity<String> insertarProducto(@RequestBody Producto producto) {
+    public ResponseEntity<String> insertarProducto(@RequestBody ProductoEntity producto) {
         try {
             productoRepository.insertarProducto(
                     producto.getNombre(),
@@ -53,7 +61,7 @@ public class ProductoController {
                     producto.getCantidadPresentacion(),
                     producto.getUnidadMedida(),
                     producto.getFechaExpiracion());
-            return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("ProductoEntity creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear el producto", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -62,7 +70,7 @@ public class ProductoController {
     // Actualizar un producto existente
     @PutMapping("/{codigoBarras}/edit")
     public ResponseEntity<String> actualizarProducto(@PathVariable("codigoBarras") String codigoBarras,
-            @RequestBody Producto producto) {
+            @RequestBody ProductoEntity producto) {
         try {
             productoRepository.actualizarProducto(codigoBarras,
                     producto.getNombre(),
@@ -71,7 +79,7 @@ public class ProductoController {
                     producto.getCantidadPresentacion(),
                     producto.getUnidadMedida(),
                     producto.getFechaExpiracion());
-            return new ResponseEntity<>("Producto actualizado exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("ProductoEntity actualizado exitosamente", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al actualizar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -82,7 +90,7 @@ public class ProductoController {
     public ResponseEntity<String> eliminarProducto(@PathVariable("codigoBarras") String codigoBarras) {
         try {
             productoRepository.eliminarProducto(codigoBarras);
-            return new ResponseEntity<>("Producto eliminado exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("ProductoEntity eliminado exitosamente", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al eliminar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
         }

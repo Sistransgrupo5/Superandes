@@ -1,14 +1,21 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import uniandes.edu.co.proyecto.modelo.Sucursal;
+import uniandes.edu.co.proyecto.modelo.SucursalEntity;
 import uniandes.edu.co.proyecto.repositorio.SucursalRepositorio;
-
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/sucursales")
@@ -19,9 +26,9 @@ public class SucursalController {
 
     // Obtener todas las sucursales
     @GetMapping
-    public ResponseEntity<Collection<Sucursal>> darSucursales() {
+    public ResponseEntity<Collection<SucursalEntity>> darSucursales() {
         try {
-            Collection<Sucursal> sucursales = sucursalRepositorio.darSucursales();
+            Collection<SucursalEntity> sucursales = sucursalRepositorio.darSucursales();
             if (sucursales.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -33,9 +40,9 @@ public class SucursalController {
 
     // Obtener una sucursal por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Sucursal> darSucursal(@PathVariable("id") int id) {
+    public ResponseEntity<SucursalEntity> darSucursal(@PathVariable("id") int id) {
         try {
-            Sucursal sucursal = sucursalRepositorio.darSucursal(id);
+            SucursalEntity sucursal = sucursalRepositorio.darSucursal(id);
             if (sucursal != null) {
                 return new ResponseEntity<>(sucursal, HttpStatus.OK);
             } else {
@@ -48,10 +55,10 @@ public class SucursalController {
 
     // Insertar una nueva sucursal
     @PostMapping("/new")
-    public ResponseEntity<String> insertarSucursal(@RequestBody Sucursal sucursal) {
+    public ResponseEntity<String> insertarSucursal(@RequestBody SucursalEntity sucursal) {
         try {
             sucursalRepositorio.insertarSucursal(sucursal.getNombre(), sucursal.getTamanio(), sucursal.getDireccion(), sucursal.getTelefono());
-            return new ResponseEntity<>("Sucursal creada exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("SucursalEntity creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear la sucursal", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -59,10 +66,10 @@ public class SucursalController {
 
     // Actualizar una sucursal existente
     @PutMapping("/{id}")
-    public ResponseEntity<String> actualizarSucursal(@PathVariable("id") int id, @RequestBody Sucursal sucursal) {
+    public ResponseEntity<String> actualizarSucursal(@PathVariable("id") int id, @RequestBody SucursalEntity sucursal) {
         try {
             sucursalRepositorio.actualizarSucursal(id, sucursal.getNombre(), sucursal.getTamanio(), sucursal.getDireccion(), sucursal.getTelefono());
-            return new ResponseEntity<>("Sucursal actualizada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("SucursalEntity actualizada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al actualizar la sucursal", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -73,7 +80,7 @@ public class SucursalController {
     public ResponseEntity<String> eliminarSucursal(@PathVariable("id") int id) {
         try {
             sucursalRepositorio.eliminarSucursal(id);
-            return new ResponseEntity<>("Sucursal eliminada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("SucursalEntity eliminada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al eliminar la sucursal", HttpStatus.INTERNAL_SERVER_ERROR);
         }

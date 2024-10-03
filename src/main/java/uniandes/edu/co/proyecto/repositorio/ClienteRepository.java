@@ -8,21 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Cliente;
+import uniandes.edu.co.proyecto.modelo.ClienteEntity;
 
-public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
+public interface ClienteRepository extends JpaRepository<ClienteEntity, Integer> {
 
     @Query(value = "SELECT * FROM clientes", nativeQuery = true)
-    Collection<Cliente> darClientes();
+    Collection<ClienteEntity> darClientes();
 
-    @Query(value = "SELECT * FROM clientes WHERE cedula= : cedula", nativeQuery=true)
-    Cliente darCliente(@Param("cedula") int cedula);
+    @Query(value = "SELECT * FROM clientes WHERE cedula= : cedula", nativeQuery = true)
+    ClienteEntity darCliente(@Param("cedula") int cedula);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO clientes(cedula,nombre) VALUES(proyecto_sequence.nextval, :nombre)", nativeQuery = true)
     void insertarCliente(@Param("nombre") String nombre);
-
 
     @Modifying
     @Transactional
@@ -33,5 +32,5 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
     @Transactional
     @Query(value = "DELETE FROM clientes WHERE cedula = :cedula", nativeQuery = true)
     void eliminarCliente(@Param("cedula") int cedula);
-    
+
 }

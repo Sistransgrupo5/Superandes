@@ -8,21 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.modelo.Ciudad;
+import uniandes.edu.co.proyecto.modelo.CiudadEntity;
 
-public interface CiudadRepository extends JpaRepository<Ciudad, Integer>{
+public interface CiudadRepository extends JpaRepository<CiudadEntity, Integer> {
 
     @Query(value = "SELECT * FROM ciudades", nativeQuery = true)
-    Collection<Ciudad> darCiudades();
-    
-    @Query(value = "SELECT * FROM ciudades WHERE codigo= : codigo", nativeQuery=true)
-    Ciudad darCiudad(@Param("codigo") long codigo);
+    Collection<CiudadEntity> darCiudades();
+
+    @Query(value = "SELECT * FROM ciudades WHERE codigo= : codigo", nativeQuery = true)
+    CiudadEntity darCiudad(@Param("codigo") long codigo);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO ciudades(codigo,nombre) VALUES(proyecto_sequence.nextval, :nombre )", nativeQuery = true)
     void insertarCiudad(@Param("nombre") String nombre);
-
 
     @Modifying
     @Transactional
@@ -33,5 +32,5 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Integer>{
     @Transactional
     @Query(value = "DELETE FROM ciudades WHERE codigo = :codigo", nativeQuery = true)
     void eliminarCiudad(@Param("codigo") long codigo);
-    
+
 }

@@ -2,20 +2,22 @@ package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
 import java.util.Date;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import uniandes.edu.co.proyecto.modelo.OrdenCompra;
 
-public interface OrdenCompraRepository extends JpaRepository<OrdenCompra, Integer> {
+import uniandes.edu.co.proyecto.modelo.OrdenCompraEntity;
+
+public interface OrdenCompraRepository extends JpaRepository<OrdenCompraEntity, Integer> {
 
     @Query(value = "SELECT * FROM ordenesCompra", nativeQuery = true)
-    Collection<OrdenCompra> darOrdenesCompra();
+    Collection<OrdenCompraEntity> darOrdenesCompra();
 
     @Query(value = "SELECT * FROM ordenesCompra WHERE id = :id", nativeQuery = true)
-    OrdenCompra darOrdenCompra(@Param("id") int id);
+    OrdenCompraEntity darOrdenCompra(@Param("id") int id);
 
     @Modifying
     @Transactional
