@@ -11,11 +11,11 @@ import jakarta.persistence.ManyToOne;
 public class InfoExtraProveedorEntityPK implements Serializable{
 
     @ManyToOne
-    @JoinColumn(name = "proveedor_id", referencedColumnName = "id")
+    @JoinColumn(name = "proveedor_id", referencedColumnName = "NIT")
     private ProveedorEntity proveedor;
 
     @ManyToOne
-    @JoinColumn(name = "producto_id", nullable = false)
+    @JoinColumn(name = "producto_id", referencedColumnName = "id")
     private ProductoEntity producto;
 
     public InfoExtraProveedorEntityPK(ProveedorEntity proveedor_id, ProductoEntity producto_id){

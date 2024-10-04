@@ -1,8 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,15 +9,15 @@ import jakarta.persistence.Table;
 public class ProveedorEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
     private String NIT;
+
     private String nombre;
     private String direccion;
     private String nombre_contacto;
     private String telefono;
 
-    public ProveedorEntity(String nombre, String direccion, String nombre_contacto, String telefono) {
+    public ProveedorEntity(String NIT,String nombre, String direccion, String nombre_contacto, String telefono) {
+        this.NIT = NIT;
         this.nombre = nombre;
         this.direccion = direccion;
         this.nombre_contacto = nombre_contacto;

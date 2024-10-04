@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -7,6 +8,7 @@ import jakarta.persistence.Table;
 @Table(name = "Info_Extra_Ventas")
 public class InfoExtraVenta {
 
+    @EmbeddedId
     private InfoExtraVentaPK pk;
 
     private Integer cantidad;

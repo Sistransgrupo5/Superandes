@@ -2,17 +2,12 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "info_extra_orden")
 public class InfoExtraOrdenEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @EmbeddedId
     private InfoExtraOrdenEntityPK pk;
 

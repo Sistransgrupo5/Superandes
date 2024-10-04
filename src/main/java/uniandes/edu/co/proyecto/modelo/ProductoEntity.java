@@ -14,6 +14,7 @@ public class ProductoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String codigoBarras;
     private String nombre;
@@ -89,5 +90,13 @@ public class ProductoEntity {
 
     public void setFechaExpiracion(Date fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
