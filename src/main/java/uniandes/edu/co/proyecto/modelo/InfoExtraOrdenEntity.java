@@ -1,11 +1,10 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,31 +13,25 @@ public class InfoExtraOrdenEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @EmbeddedId
+    private InfoExtraOrdenEntityPK pk;
 
     private Integer cantidad;
     private Integer costoUnitarioCompra;
 
-    @ManyToOne
-    @JoinColumn(name = "orden_compra_id", nullable = false)
-    private OrdenCompraEntity ordenCompra;
-
-    @ManyToOne
-    @JoinColumn(name = "producto_id", nullable = false)
-    private ProductoEntity producto;
-
     public InfoExtraOrdenEntity() {
     }
 
-    public InfoExtraOrdenEntity(Integer cantidad, Integer costoUnitarioCompra, OrdenCompraEntity ordenCompra, ProductoEntity producto) {
+    public InfoExtraOrdenEntity(OrdenCompraEntity ordenCompra_id, ProductoEntity producto_id, Integer cantidad, Integer costoUnitarioCompra) {
+
+        this.pk = new InfoExtraOrdenEntityPK(ordenCompra_id,producto_id);
         this.cantidad = cantidad;
         this.costoUnitarioCompra = costoUnitarioCompra;
-        this.ordenCompra = ordenCompra;
-        this.producto = producto;
+
     }
 
-    public Long getId() {
-        return id;
+    public InfoExtraOrdenEntityPK getId() {
+        return pk;
     }
 
     public Integer getCantidad() {
@@ -49,18 +42,6 @@ public class InfoExtraOrdenEntity {
         return costoUnitarioCompra;
     }
 
-    public OrdenCompraEntity getOrdenCompra() {
-        return ordenCompra;
-    }
-
-    public ProductoEntity getProducto() {
-        return producto;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
@@ -69,11 +50,4 @@ public class InfoExtraOrdenEntity {
         this.costoUnitarioCompra = costoUnitarioCompra;
     }
 
-    public void setOrdenCompra(OrdenCompraEntity ordenCompra) {
-        this.ordenCompra = ordenCompra;
-    }
-
-    public void setProducto(ProductoEntity producto) {
-        this.producto = producto;
-    }
 }

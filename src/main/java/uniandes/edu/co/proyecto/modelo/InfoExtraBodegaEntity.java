@@ -2,11 +2,8 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.util.List;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -14,20 +11,13 @@ import jakarta.persistence.Table;
 @Table(name = "info_extra_bodega")
 public class InfoExtraBodegaEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @EmbeddedId
+    private InfoExtraBodegaEntityPK pk;
 
     private double costoPromedio;
     private int totalExistencias;
     private int nivelMinimoReorden;
-    private String capacidadAlmacenamiento;
-
-    @ManyToOne
-    private BodegaEntity bodega;
-
-    @ManyToOne
-    private ProveedorEntity proveedor;
+    private double capacidadAlmacenamiento;
 
     @OneToMany(mappedBy = "infoExtraBodega")
     private List<DetalleCostosBodegaEntity> detallesCostosBodega;
@@ -35,73 +25,56 @@ public class InfoExtraBodegaEntity {
     public InfoExtraBodegaEntity() {
     }
 
-    public InfoExtraBodegaEntity(double costoPromedio, int totalExistencias, int nivelMinimoReorden, String capacidadAlmacenamiento, BodegaEntity bodega, ProveedorEntity proveedor) {
+    public InfoExtraBodegaEntity(BodegaEntity bodega_id, ProductoEntity producto_id, DetalleCostosBodegaEntity id_detalle, double costoPromedio, int totalExistencias, int nivelMinimoReorden, double capacidadAlmacenamiento) {
+        this.pk = new InfoExtraBodegaEntityPK(bodega_id, producto_id);
         this.costoPromedio = costoPromedio;
         this.totalExistencias = totalExistencias;
         this.nivelMinimoReorden = nivelMinimoReorden;
         this.capacidadAlmacenamiento = capacidadAlmacenamiento;
-        this.bodega = bodega;
-        this.proveedor = proveedor;
     }
 
-    public Long getId() {
-        return id;
+    public InfoExtraBodegaEntityPK getId() {
+        return pk;
+    }
+
+    public void setId(InfoExtraBodegaEntityPK pk) {
+        this.pk = pk;
     }
 
     public double getCostoPromedio() {
         return costoPromedio;
     }
 
-    public int getTotalExistencias() {
-        return totalExistencias;
-    }
-
-    public int getNivelMinimoReorden() {
-        return nivelMinimoReorden;
-    }
-
-    public String getCapacidadAlmacenamiento() {
-        return capacidadAlmacenamiento;
-    }
-
-    public BodegaEntity getBodega() {
-        return bodega;
-    }
-
-    public ProveedorEntity getProveedor() {
-        return proveedor;
-    }
-
-    public List<DetalleCostosBodegaEntity> getDetallesCostosBodega() {
-        return detallesCostosBodega;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setCostoPromedio(double costoPromedio) {
         this.costoPromedio = costoPromedio;
+    }
+
+    public int getTotalExistencias() {
+        return totalExistencias;
     }
 
     public void setTotalExistencias(int totalExistencias) {
         this.totalExistencias = totalExistencias;
     }
 
+    public int getNivelMinimoReorden() {
+        return nivelMinimoReorden;
+    }
+
     public void setNivelMinimoReorden(int nivelMinimoReorden) {
         this.nivelMinimoReorden = nivelMinimoReorden;
     }
 
-    public void setCapacidadAlmacenamiento(String capacidadAlmacenamiento) {
+    public double getCapacidadAlmacenamiento() {
+        return capacidadAlmacenamiento;
+    }
+
+    public void setCapacidadAlmacenamiento(double capacidadAlmacenamiento) {
         this.capacidadAlmacenamiento = capacidadAlmacenamiento;
     }
 
-    public void setBodega(BodegaEntity bodega) {
-        this.bodega = bodega;
-    }
-
-    public void setProveedor(ProveedorEntity proveedor) {
-        this.proveedor = proveedor;
+    public List<DetalleCostosBodegaEntity> getDetallesCostosBodega() {
+        return detallesCostosBodega;
     }
 
     public void setDetallesCostosBodega(List<DetalleCostosBodegaEntity> detallesCostosBodega) {
