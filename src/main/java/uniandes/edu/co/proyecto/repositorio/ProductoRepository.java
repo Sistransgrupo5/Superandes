@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.ProductoEntity;
 
-public interface ProductoRepository extends JpaRepository<ProductoEntity, String> {
+public interface ProductoRepository extends JpaRepository<ProductoEntity, Integer> {
 
     @Query(value = "SELECT * FROM productos", nativeQuery = true)
     Collection<ProductoEntity> darProductos();

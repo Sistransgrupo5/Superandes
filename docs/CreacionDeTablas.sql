@@ -18,11 +18,15 @@ CREATE TABLE Sucursal (
 
 -- Tabla InfoExtraBodega
 CREATE TABLE InfoExtraBodega (
-    id_infoExtraBodega INT PRIMARY KEY,
+    id_bodega INT NOT NULL,
+    id_producto INT NOT NULL,
     costoPromedio DECIMAL(10, 2) NOT NULL,
     nivelMinReorden INT CHECK (nivelMinReorden > 25),
     totalExistencias INT NOT NULL,
-    capacidadAlmacenamiento DECIMAL(10, 2) NOT NULL
+    capacidadAlmacenamiento DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (id_bodega, id_producto),  -- Clave primaria compuesta
+    FOREIGN KEY (id_bodega) REFERENCES Bodega(id_bodega),
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
 );
 
 -- Tabla EspecificacionEmpacado

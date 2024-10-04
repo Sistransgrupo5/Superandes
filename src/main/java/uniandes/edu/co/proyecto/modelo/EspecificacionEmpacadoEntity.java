@@ -1,10 +1,12 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,24 +15,24 @@ public class EspecificacionEmpacadoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private double volumen;
     private double peso;
 
-    @ManyToOne
-    private ProductoEntity producto;
+    @OneToMany
+    private List<ProductoEntity> productos;
 
     public EspecificacionEmpacadoEntity() {
     }
 
-    public EspecificacionEmpacadoEntity(double volumen, double peso, ProductoEntity producto) {
+    public EspecificacionEmpacadoEntity(double volumen, double peso, List<ProductoEntity> productos) {
         this.volumen = volumen;
         this.peso = peso;
-        this.producto = producto;
+        this.productos =  productos;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -42,11 +44,11 @@ public class EspecificacionEmpacadoEntity {
         return peso;
     }
 
-    public ProductoEntity getProducto() {
-        return producto;
+    public List<ProductoEntity> getProducto() {
+        return productos;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -58,7 +60,7 @@ public class EspecificacionEmpacadoEntity {
         this.peso = peso;
     }
 
-    public void setProducto(ProductoEntity producto) {
-        this.producto = producto;
+    public void setProducto(List<ProductoEntity> productos) {
+        this.productos = productos;
     }
 }

@@ -1,13 +1,17 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "categorias")
+@Table(name = "Categoria")
 public class CategoriaEntity {
 
     @Id
@@ -18,10 +22,14 @@ public class CategoriaEntity {
     private String descripcion;
     private String caracteristicas;
 
-    public CategoriaEntity(String nombre, String descripcion, String caracteristicas) {
+    @OneToMany(mappedBy = "Categoria", cascade = CascadeType.ALL)
+    private List<ProductoEntity> bodegas;
+
+    public CategoriaEntity(String nombre, String descripcion, String caracteristicas, List<ProductoEntity> bodegas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.caracteristicas = caracteristicas;
+        this.bodegas = bodegas;
     }
 
     public CategoriaEntity() {

@@ -1,13 +1,16 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "Cliente")
 public class ClienteEntity {
 
     @Id
@@ -16,8 +19,13 @@ public class ClienteEntity {
     private Integer cedula;
     private String nombre;
 
-    public ClienteEntity(Integer cedula, String nombre) {
+    @OneToMany
+    private List<VentaEntity> ventas;
+
+    public ClienteEntity(Integer cedula, String nombre, List<VentaEntity> ventas) {
+        this.cedula = cedula;
         this.nombre = nombre;
+        this.ventas = ventas;
     }
 
     public ClienteEntity() {
