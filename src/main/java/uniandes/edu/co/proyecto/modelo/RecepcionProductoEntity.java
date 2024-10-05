@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +19,12 @@ public class RecepcionProductoEntity {
 
     private Integer id;
     private Date fechaRecepcion;
+
+    @ManyToOne
+    private BodegaEntity bodega;
+
+    @OneToOne
+    private OrdenCompraEntity ordenCompra;
 
     public RecepcionProductoEntity(Date fechaRecepcion) {
         this.fechaRecepcion = fechaRecepcion;

@@ -1,13 +1,17 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "sucursal")
+@Table(name = "Sucursal")
 public class SucursalEntity {
 
     @Id
@@ -18,6 +22,18 @@ public class SucursalEntity {
     private Integer tamanio;
     private String direccion;
     private String telefono;
+
+    @ManyToOne
+    private CiudadEntity ciudad;
+
+    @OneToMany
+    private List<VentaEntity> ventas;
+
+    @OneToMany
+    private List<BodegaEntity> bodegas;
+
+    @OneToMany
+    private List<OrdenCompraEntity> ordenCompras;
 
     public SucursalEntity(String nombre, Integer tamanio, String direccion, String telefono) {
         this.nombre = nombre;

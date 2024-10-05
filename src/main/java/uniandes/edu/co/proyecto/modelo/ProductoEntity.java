@@ -1,11 +1,15 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +27,36 @@ public class ProductoEntity {
     private Integer cantidadPresentacion;
     private String unidadMedida;
     private Date fechaExpiracion;
+
+    @ManyToMany
+    private List<OrdenCompraEntity> ordenCompras;
+
+    @ManyToMany
+    private List<ProveedorEntity> proveedores;
+
+    @ManyToMany
+    private List<VentaEntity> ventas;
+
+    @ManyToMany
+    private List<BodegaEntity> bodegas;
+
+    @ManyToOne
+    private CategoriaEntity categoria;
+
+    @ManyToOne
+    private EspecificacionEmpacadoEntity especificacion;
+
+    @OneToMany
+    private List<InfoExtraBodegaEntityPK> infoExtraBodegas;
+
+    @OneToMany
+    private List<InfoExtraProveedorEntityPK> infoExtraProveedores;
+
+    @OneToMany
+    private List<InfoExtraOrdenEntityPK> infoExtraOrdenes;
+
+    @OneToMany
+    private List<InfoExtraVentaPK> infoExtraVentas;
 
     public ProductoEntity(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion) {
         this.nombre = nombre;

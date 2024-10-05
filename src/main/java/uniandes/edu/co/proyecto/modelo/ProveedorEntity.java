@@ -1,11 +1,16 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "proveedores")
+@Table(name = "Proveedores")
 public class ProveedorEntity {
 
     @Id
@@ -15,6 +20,15 @@ public class ProveedorEntity {
     private String direccion;
     private String nombre_contacto;
     private String telefono;
+
+    @ManyToMany
+    private List<ProductoEntity> productos;
+
+    @ManyToMany
+    private List<OrdenCompraEntity> ordenCompras;
+
+    @OneToMany
+    private  List<InfoExtraProveedorEntityPK> InfoExtraProveedores;
 
     public ProveedorEntity(String NIT,String nombre, String direccion, String nombre_contacto, String telefono) {
         this.NIT = NIT;
