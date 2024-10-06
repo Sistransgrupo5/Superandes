@@ -19,13 +19,13 @@ public class ClienteEntity {
     private Integer cedula;
     private String nombre;
 
-    @OneToMany
-    private List<VentaEntity> ventas;
+   /*  @OneToMany
+    private List<VentaEntity> ventas; */
 
-    public ClienteEntity(Integer cedula, String nombre, List<VentaEntity> ventas) {
+    public ClienteEntity(Integer cedula, String nombre) {
         this.cedula = cedula;
         this.nombre = nombre;
-        this.ventas = ventas;
+        //this.ventas = ventas;
     }
 
     public ClienteEntity() {

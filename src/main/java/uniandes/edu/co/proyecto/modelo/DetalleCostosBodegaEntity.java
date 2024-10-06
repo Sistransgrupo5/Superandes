@@ -18,16 +18,16 @@ public class DetalleCostosBodegaEntity {
     private double costoUnitarioBodega;
     private int cantidadExistencias;
 
-    @ManyToOne
-    private InfoExtraBodegaEntity infoExtraBodega;
+    /* @ManyToOne
+    private InfoExtraBodegaEntity infoExtraBodega; */
 
     public DetalleCostosBodegaEntity() {
     }
 
-    public DetalleCostosBodegaEntity(double costoUnitarioBodega, int cantidadExistencias, InfoExtraBodegaEntity infoExtraBodega) {
+    public DetalleCostosBodegaEntity(double costoUnitarioBodega, int cantidadExistencias) {
         this.costoUnitarioBodega = costoUnitarioBodega;
         this.cantidadExistencias = cantidadExistencias;
-        this.infoExtraBodega = infoExtraBodega;
+        //this.infoExtraBodega = infoExtraBodega;
     }
 
     public Long getId() {

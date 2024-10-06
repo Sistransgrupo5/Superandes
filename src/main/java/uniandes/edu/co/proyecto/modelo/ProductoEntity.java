@@ -28,7 +28,7 @@ public class ProductoEntity {
     private String unidadMedida;
     private Date fechaExpiracion;
 
-    @ManyToMany
+    /* @ManyToMany
     private List<OrdenCompraEntity> ordenCompras;
 
     @ManyToMany
@@ -56,7 +56,7 @@ public class ProductoEntity {
     private List<InfoExtraOrdenEntityPK> infoExtraOrdenes;
 
     @OneToMany
-    private List<InfoExtraVentaPK> infoExtraVentas;
+    private List<InfoExtraVentaPK> infoExtraVentas; */
 
     public ProductoEntity(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion) {
         this.nombre = nombre;

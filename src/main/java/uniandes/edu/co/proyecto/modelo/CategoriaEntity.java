@@ -22,14 +22,14 @@ public class CategoriaEntity {
     private String descripcion;
     private String caracteristicas;
 
-    @OneToMany(mappedBy = "Categoria", cascade = CascadeType.ALL)
-    private List<ProductoEntity> bodegas;
+    /* @OneToMany
+    private List<ProductoEntity> bodegas; */
 
-    public CategoriaEntity(String nombre, String descripcion, String caracteristicas, List<ProductoEntity> bodegas) {
+    public CategoriaEntity(String nombre, String descripcion, String caracteristicas /* List<ProductoEntity> bodegas */) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.caracteristicas = caracteristicas;
-        this.bodegas = bodegas;
+        /* this.bodegas = bodegas; */
     }
 
     public CategoriaEntity() {

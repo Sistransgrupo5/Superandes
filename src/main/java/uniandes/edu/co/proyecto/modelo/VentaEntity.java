@@ -21,14 +21,14 @@ public class VentaEntity {
     private Integer id;
     private Date fecha;
 
-    @ManyToOne
+    /* @ManyToOne
     private ClienteEntity cliente;
 
     @ManyToOne
     private SucursalEntity sucursal;
 
     @ManyToMany
-    private List<ProductoEntity> productos;
+    private List<ProductoEntity> productos; */
 
     public VentaEntity(Integer id, Date fecha) {
         this.fecha = fecha;

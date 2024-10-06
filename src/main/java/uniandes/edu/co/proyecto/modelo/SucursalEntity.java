@@ -23,7 +23,7 @@ public class SucursalEntity {
     private String direccion;
     private String telefono;
 
-    @ManyToOne
+   /*  @ManyToOne
     private CiudadEntity ciudad;
 
     @OneToMany
@@ -33,7 +33,7 @@ public class SucursalEntity {
     private List<BodegaEntity> bodegas;
 
     @OneToMany
-    private List<OrdenCompraEntity> ordenCompras;
+    private List<OrdenCompraEntity> ordenCompras; */
 
     public SucursalEntity(String nombre, Integer tamanio, String direccion, String telefono) {
         this.nombre = nombre;

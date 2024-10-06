@@ -10,21 +10,21 @@ import uniandes.edu.co.proyecto.modelo.BodegaEntity;
 import uniandes.edu.co.proyecto.repositorio.BodegaRepository;
 
 @SpringBootApplication
-public class ProyectoApplication implements CommandLineRunner {
+public class ProyectoApplication {//implements CommandLineRunner
 
-    @Autowired
-    private BodegaRepository bodegaRepository;
+    /* @Autowired
+    private BodegaRepository bodegaRepository; */
 
     public static void main(String[] args) {
         SpringApplication.run(ProyectoApplication.class, args);
     }
 
-    @Override
+   /*  @Override
     public void run(String... arg) {
 
         Collection<BodegaEntity> bodegas = bodegaRepository.darBodegas();
         for(BodegaEntity b: bodegas){
             System.err.println(b);
         }
-    }
+    } */
 }

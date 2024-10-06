@@ -24,7 +24,7 @@ public class OrdenCompraEntity {
     private String estado;
     private Date fechaEntrega;
 
-    @ManyToMany
+    /* @ManyToMany
     private List<ProductoEntity> producto;
 
     @ManyToOne
@@ -34,7 +34,7 @@ public class OrdenCompraEntity {
     private ProveedorEntity proveedor;
 
     @OneToOne
-    private RecepcionProductoEntity recepcionProducto;
+    private RecepcionProductoEntity recepcionProducto; */
 
     public OrdenCompraEntity(Date fechaCreacion, String estado, Date fechaEntrega) {
         this.fechaCreacion = fechaCreacion;

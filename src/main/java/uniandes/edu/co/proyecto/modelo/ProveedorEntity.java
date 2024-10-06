@@ -21,14 +21,14 @@ public class ProveedorEntity {
     private String nombre_contacto;
     private String telefono;
 
-    @ManyToMany
+    /* @ManyToMany
     private List<ProductoEntity> productos;
 
     @ManyToMany
     private List<OrdenCompraEntity> ordenCompras;
 
     @OneToMany
-    private  List<InfoExtraProveedorEntityPK> InfoExtraProveedores;
+    private  List<InfoExtraProveedorEntityPK> InfoExtraProveedores; */
 
     public ProveedorEntity(String NIT,String nombre, String direccion, String nombre_contacto, String telefono) {
         this.NIT = NIT;

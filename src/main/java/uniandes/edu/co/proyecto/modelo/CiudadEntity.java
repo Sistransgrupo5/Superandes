@@ -20,13 +20,13 @@ public class CiudadEntity {
     private Integer codigo;
     private String nombre;
 
-    @OneToMany(mappedBy = "Ciudad", cascade = CascadeType.ALL)
-    private List<SucursalEntity> sucursales;
+    /* @OneToMany
+    private List<SucursalEntity> sucursales; */
 
-    public CiudadEntity(Integer codigo, String nombre, List<SucursalEntity> sucursales) {
+    public CiudadEntity(Integer codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.sucursales = sucursales;
+        //this.sucursales = sucursales;
     }
 
     public CiudadEntity() {

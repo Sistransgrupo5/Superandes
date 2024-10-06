@@ -20,16 +20,16 @@ public class EspecificacionEmpacadoEntity {
     private double volumen;
     private double peso;
 
-    @OneToMany
-    private List<ProductoEntity> productos;
+    /* @OneToMany
+    private List<ProductoEntity> productos; */
 
     public EspecificacionEmpacadoEntity() {
     }
 
-    public EspecificacionEmpacadoEntity(double volumen, double peso, List<ProductoEntity> productos) {
+    public EspecificacionEmpacadoEntity(double volumen, double peso) {
         this.volumen = volumen;
         this.peso = peso;
-        this.productos =  productos;
+        //this.productos =  productos;
     }
 
     public int getId() {

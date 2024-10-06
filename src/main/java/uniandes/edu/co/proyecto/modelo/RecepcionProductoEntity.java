@@ -20,11 +20,11 @@ public class RecepcionProductoEntity {
     private Integer id;
     private Date fechaRecepcion;
 
-    @ManyToOne
+   /*  @ManyToOne
     private BodegaEntity bodega;
 
     @OneToOne
-    private OrdenCompraEntity ordenCompra;
+    private OrdenCompraEntity ordenCompra; */
 
     public RecepcionProductoEntity(Date fechaRecepcion) {
         this.fechaRecepcion = fechaRecepcion;

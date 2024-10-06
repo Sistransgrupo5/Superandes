@@ -26,17 +26,16 @@ public class BodegaEntity {
     private String nombre;
     private Integer tamanio;
 
-    // Relación ManyToOne con Sucursal
-    @ManyToOne
+    /* @ManyToOne
     @JoinColumn(name = "id_sucursal", referencedColumnName = "id")
     private SucursalEntity sucursal;
 
-    // Relación OneToOne con InfoExtraBodega
+
     @OneToOne
     @JoinColumn(name = "id_info_extra_bodega", referencedColumnName = "id")
     private InfoExtraBodegaEntity infoExtraBodega;
 
-    // Relación ManyToMany con Producto
+
     @ManyToMany
     @JoinTable(
         name = "ProductoBodega",
@@ -45,24 +44,24 @@ public class BodegaEntity {
     )
     private List<ProductoEntity> productos;
 
-    // Relación OneToMany con RecepcionProductos
-    @OneToMany(mappedBy = "Bodega", cascade = CascadeType.ALL)
-    private List<RecepcionProductoEntity> recepcionProductos;
 
-    public BodegaEntity(String nombre, Integer tamanio, SucursalEntity sucursal, InfoExtraBodegaEntity infoExtraBodega,
-                        List<ProductoEntity> productos, List<RecepcionProductoEntity> recepcionProductos) {
+    @OneToMany(mappedBy = "Bodega", cascade = CascadeType.ALL)
+    private List<RecepcionProductoEntity> recepcionProductos; */
+
+    public BodegaEntity(String nombre, Integer tamanio /* SucursalEntity sucursal, InfoExtraBodegaEntity infoExtraBodega,
+                        List<ProductoEntity> productos, List<RecepcionProductoEntity> recepcionProductos */) {
         this.nombre = nombre;
         this.tamanio = tamanio;
-        this.sucursal = sucursal;
+        /* this.sucursal = sucursal;
         this.infoExtraBodega = infoExtraBodega;
         this.productos = productos;
-        this.recepcionProductos = recepcionProductos;
+        this.recepcionProductos = recepcionProductos; */
     }
 
     public BodegaEntity() {
     }
 
-    
+
     public Integer getId() {
         return id;
     }
@@ -87,7 +86,7 @@ public class BodegaEntity {
         this.tamanio = tamanio;
     }
 
-    public SucursalEntity getSucursal() {
+   /*  public SucursalEntity getSucursal() {
         return sucursal;
     }
 
@@ -117,6 +116,6 @@ public class BodegaEntity {
 
     public void setRecepcionProductos(List<RecepcionProductoEntity> recepcionProductos) {
         this.recepcionProductos = recepcionProductos;
-    }
+    } */
 
 }

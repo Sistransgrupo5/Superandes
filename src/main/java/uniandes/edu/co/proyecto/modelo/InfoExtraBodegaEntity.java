@@ -19,7 +19,7 @@ public class InfoExtraBodegaEntity {
     private int nivelMinimoReorden;
     private double capacidadAlmacenamiento;
 
-    @OneToMany(mappedBy = "infoExtraBodega")
+    @OneToMany
     private List<DetalleCostosBodegaEntity> detallesCostosBodega;
 
     public InfoExtraBodegaEntity() {

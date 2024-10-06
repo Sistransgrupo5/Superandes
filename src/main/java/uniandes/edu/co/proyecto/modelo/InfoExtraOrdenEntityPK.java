@@ -26,6 +26,9 @@ public class InfoExtraOrdenEntityPK implements Serializable {
 
     }
 
+    public InfoExtraOrdenEntityPK(){
+    }
+
     public OrdenCompraEntity getOrdenCompra() {
         return ordenCompra;
     }
