@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class InfoExtraBodegaEntityPK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "bodega_id", referencedColumnName = "id")
+    @JoinColumn(name = "id_bodega", referencedColumnName = "id_bodega")
     private BodegaEntity bodega;
 
     @ManyToOne

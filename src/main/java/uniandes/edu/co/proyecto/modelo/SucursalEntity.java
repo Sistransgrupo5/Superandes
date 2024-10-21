@@ -1,13 +1,9 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,16 +18,10 @@ public class SucursalEntity {
     private Integer tamanio;
     private String direccion;
     private String telefono;
-
-   /*  @ManyToOne
+    /*  @ManyToOne
     private CiudadEntity ciudad;
-
     @OneToMany
     private List<VentaEntity> ventas;
-
-    @OneToMany
-    private List<BodegaEntity> bodegas;
-
     @OneToMany
     private List<OrdenCompraEntity> ordenCompras; */
 

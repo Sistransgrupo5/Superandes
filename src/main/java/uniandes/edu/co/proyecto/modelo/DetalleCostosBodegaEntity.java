@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -42,9 +41,9 @@ public class DetalleCostosBodegaEntity {
         return cantidadExistencias;
     }
 
-    public InfoExtraBodegaEntity getInfoExtraBodega() {
+    /* public InfoExtraBodegaEntity getInfoExtraBodega() {
         return infoExtraBodega;
-    }
+    } */
 
     public void setId(Long id) {
         this.id = id;
@@ -58,7 +57,7 @@ public class DetalleCostosBodegaEntity {
         this.cantidadExistencias = cantidadExistencias;
     }
 
-    public void setInfoExtraBodega(InfoExtraBodegaEntity infoExtraBodega) {
+   /*  public void setInfoExtraBodega(InfoExtraBodegaEntity infoExtraBodega) {
         this.infoExtraBodega = infoExtraBodega;
-    }
+    } */
 }
