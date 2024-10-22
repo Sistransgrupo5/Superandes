@@ -7,14 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import uniandes.edu.co.proyecto.modelo.CiudadEntity;
-import uniandes.edu.co.proyecto.repositorio.CiudadRepository;
+import uniandes.edu.co.proyecto.modelo.ClienteEntity;
+import uniandes.edu.co.proyecto.repositorio.ClienteRepository;
 
 @SpringBootApplication
 public class ProyectoApplication implements CommandLineRunner {
 
     @Autowired
-    private CiudadRepository CiudadRepository;
+    private ClienteRepository ClienteRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ProyectoApplication.class, args);
@@ -23,8 +23,8 @@ public class ProyectoApplication implements CommandLineRunner {
     @Override
     public void run(String... arg) {
 
-        Collection<CiudadEntity> Ciudads = CiudadRepository.darCiudades();
-        for(CiudadEntity b: Ciudads){
+        Collection<ClienteEntity> Clientes = ClienteRepository.darClientes();
+        for(ClienteEntity b: Clientes){
             System.err.println(b);
         }
     }
