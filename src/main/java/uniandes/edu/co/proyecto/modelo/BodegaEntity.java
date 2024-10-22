@@ -22,7 +22,7 @@ public class BodegaEntity {
     private SucursalEntity sucursal;
 
 
-     @OneToOne
+    @OneToOne
     @JoinColumn(name = "id_info_extra_bodega", referencedColumnName = "id_bodega")
     private InfoExtraBodegaEntity infoExtraBodega;
 
@@ -76,7 +76,7 @@ public class BodegaEntity {
         this.tamanio = tamanio;
     }
 
-     /*public SucursalEntity getSucursal() {
+    /*public SucursalEntity getSucursal() {
         return sucursal;
     }
 

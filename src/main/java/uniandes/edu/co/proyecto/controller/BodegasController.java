@@ -39,7 +39,7 @@ public class BodegasController {
     @PostMapping("/bodegas/{id}/edit/save")
     public ResponseEntity<String> bodegaEditarGuardar(@PathVariable("id") long id, @RequestBody BodegaEntity bodega) {
         try {
-            bodegaRepository.actualizarBodega(id, bodega.getNombre(), bodega.getTamanio());
+            bodegaRepository.actualizarBodega((int) id, bodega.getNombre(), bodega.getTamanio());
             return new ResponseEntity<>("BodegaEntity actualizada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al actualizar la bodega", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -47,7 +47,7 @@ public class BodegasController {
     }
 
     @GetMapping("/bodegas/{id}/delete")
-    public ResponseEntity<String> bodegaEliminar(@PathVariable("id") long id) {
+    public ResponseEntity<String> bodegaEliminar(@PathVariable("id") int id) {
         try {
             bodegaRepository.eliminarBodega(id);
             return new ResponseEntity<>("BodegaEntity eliminada exitosamente", HttpStatus.OK);
