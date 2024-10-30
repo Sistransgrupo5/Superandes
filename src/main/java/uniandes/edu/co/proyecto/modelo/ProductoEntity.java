@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -58,13 +59,18 @@ public class ProductoEntity {
     @OneToMany
     private List<InfoExtraVentaPK> infoExtraVentas; */
 
-    public ProductoEntity(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion) {
+    @ManyToOne
+    @JoinColumn(name = "bodega_id", referencedColumnName = "id_bodega")
+    private BodegaEntity bodega_id;
+
+    public ProductoEntity(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion ,BodegaEntity bodega_id) {
         this.nombre = nombre;
         this.precioUnitarioVenta = precioUnitarioVenta;
         this.presentacion = presentacion;
         this.cantidadPresentacion = cantidadPresentacion;
         this.unidadMedida = unidadMedida;
         this.fechaExpiracion = fechaExpiracion;
+        this.bodega_id = bodega_id;
     }
 
     public ProductoEntity() {
@@ -132,5 +138,9 @@ public class ProductoEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setBodega(BodegaEntity bodega_id) {
+        this.bodega_id = bodega_id;
     }
 }
