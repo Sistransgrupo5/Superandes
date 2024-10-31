@@ -15,7 +15,7 @@ public class ProductoPerecederoEntity extends ProductoEntity {
     }
 
     public ProductoPerecederoEntity(String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, Date fechaVencimiento) {
-        super(nombre, precioUnitarioVenta, presentacion, cantidadPresentacion, unidadMedida, fechaExpiracion);
+        super();
         this.fechaVencimiento = fechaVencimiento;
     }
 

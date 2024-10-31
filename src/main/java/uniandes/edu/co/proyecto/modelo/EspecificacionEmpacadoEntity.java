@@ -1,12 +1,9 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -44,9 +41,9 @@ public class EspecificacionEmpacadoEntity {
         return peso;
     }
 
-    public List<ProductoEntity> getProducto() {
+    /* public List<ProductoEntity> getProducto() {
         return productos;
-    }
+    } */
 
     public void setId(int id) {
         this.id = id;
@@ -60,7 +57,7 @@ public class EspecificacionEmpacadoEntity {
         this.peso = peso;
     }
 
-    public void setProducto(List<ProductoEntity> productos) {
+    /* public void setProducto(List<ProductoEntity> productos) {
         this.productos = productos;
-    }
+    } */
 }
