@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +18,11 @@ public class BodegaEntity {
     private Integer id_bodega;
     private String nombre;
     private Integer tamanio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_sucursal", referencedColumnName = "id_sucursal")
+    private SucursalEntity sucursal_id;
+    
 
     /*@ManyToOne
     @JoinColumn(name = "id_sucursal", referencedColumnName = "id_bodega")
@@ -39,9 +46,10 @@ public class BodegaEntity {
     @OneToMany(mappedBy = "Bodega", cascade = CascadeType.ALL)
     private List<RecepcionProductoEntity> recepcionProductos; */
 
-    public BodegaEntity(String nombre, Integer tamanio) {
+    public BodegaEntity(String nombre, Integer tamanio, SucursalEntity sucursal_id) {
         this.nombre = nombre;
         this.tamanio = tamanio;
+        this.sucursal_id = sucursal_id;
         /*this.sucursal = sucursal;
         this.infoExtraBodega = infoExtraBodega;
         this.productos = productos;
@@ -74,6 +82,10 @@ public class BodegaEntity {
 
     public void setTamanio(Integer tamanio) {
         this.tamanio = tamanio;
+    }
+
+    public void setSucursal(SucursalEntity sucursal_id) {
+        this.sucursal_id = sucursal_id;
     }
 
     /*public SucursalEntity getSucursal() {

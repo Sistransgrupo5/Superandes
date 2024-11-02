@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,9 +14,10 @@ public class SucursalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer id;
+    @Column(name = "id_sucursal")
+    private Integer id_sucursal;
     private String nombre;
-    private Integer tamanio;
+    private Integer tamanio; 
     private String direccion;
     private String telefono;
     /*  @ManyToOne
@@ -36,7 +38,7 @@ public class SucursalEntity {
     }
 
     public Integer getId() {
-        return id;
+        return id_sucursal;
     }
 
     public String getNombre() {
@@ -55,8 +57,8 @@ public class SucursalEntity {
         return telefono;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer id_sucursal) {
+        this.id_sucursal = id_sucursal;
     }
 
     public void setNombre(String nombre) {
