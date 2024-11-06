@@ -35,12 +35,17 @@ public class SucursalController {
     }
 
     @GetMapping("/sucursales/consulta")
-    public ResponseEntity<?> sucursalConsulta(@RequestParam Integer id_producto) {
+    public ResponseEntity<?> sucursalConsulta(@RequestParam(required = false) Integer id_producto) {
     try {
-        Collection<SucursalEntity> sucursales = sucursalRepositorio.darSucursalesConProductoDisponible(id_producto);
 
-        if (sucursales.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron sucursales con el producto especificado.");
+        Collection<SucursalEntity> sucursales;
+        if (id_producto==null) {
+            sucursales = sucursalRepositorio.darSucursales();
+        }
+        else{
+
+            sucursales = sucursalRepositorio.darSucursalesConProductoDisponible(id_producto);
+            
         }
 
         Map<String, Object> response = new HashMap<>();
