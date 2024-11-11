@@ -13,25 +13,25 @@ import uniandes.edu.co.proyecto.modelo.VentaEntity;
 
 public interface VentaRepositorio extends JpaRepository<VentaEntity, Integer> {
 
-    @Query(value = "SELECT * FROM ventas", nativeQuery = true)
+    @Query(value = "SELECT * FROM Venta", nativeQuery = true)
     Collection<VentaEntity> darVentas();
 
-    @Query(value = "SELECT * FROM ventas WHERE id= : id", nativeQuery = true)
+    @Query(value = "SELECT * FROM Venta WHERE id= : id", nativeQuery = true)
     VentaEntity darVenta(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO ventas(id,fecha) VALUES(proyecto_sequence.nextval, :fecha)", nativeQuery = true)
+    @Query(value = "INSERT INTO Venta(id,fecha) VALUES(proyecto_sequence.nextval, :fecha)", nativeQuery = true)
     void insertarVenta(@Param("fecha") Date fecha);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ventas SET fecha=:fecha WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE Venta SET fecha=:fecha WHERE id=:id", nativeQuery = true)
     void actualizarVenta(@Param("id") int id, @Param("fecha") Date fecha);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM ventas WHERE id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM Venta WHERE id = :id", nativeQuery = true)
     void eliminarVenta(@Param("id") int id);
 
 }

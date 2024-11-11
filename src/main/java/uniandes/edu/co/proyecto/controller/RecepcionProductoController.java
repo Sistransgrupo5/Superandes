@@ -34,6 +34,7 @@ public class RecepcionProductoController {
             }
             return new ResponseEntity<>(recepciones, HttpStatus.OK);
         } catch (Exception e) {
+
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -43,24 +44,22 @@ public class RecepcionProductoController {
     public ResponseEntity<RecepcionProductoEntity> darRecepcionProducto(@PathVariable("id") int id) {
         try {
             RecepcionProductoEntity recepcion = recepcionProductoRepositorio.darRecepcionProducto(id);
-            if (recepcion != null) {
-                return new ResponseEntity<>(recepcion, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            return recepcion != null ? new ResponseEntity<>(recepcion, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
+
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // Insertar una nueva recepción de producto
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> insertarRecepcionProducto(@RequestBody RecepcionProductoEntity recepcionProducto) {
         try {
             recepcionProductoRepositorio.insertarRecepcionProducto(recepcionProducto.getFechaRecepcion());
             return new ResponseEntity<>("Recepción de producto creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al crear la recepción de producto", HttpStatus.INTERNAL_SERVER_ERROR);
+
+            return new ResponseEntity<>("Error al crear la recepción de producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -71,7 +70,8 @@ public class RecepcionProductoController {
             recepcionProductoRepositorio.actualizarRecepcionProducto(id, recepcionProducto.getFechaRecepcion());
             return new ResponseEntity<>("Recepción de producto actualizada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al actualizar la recepción de producto", HttpStatus.INTERNAL_SERVER_ERROR);
+
+            return new ResponseEntity<>("Error al actualizar la recepción de producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -82,7 +82,8 @@ public class RecepcionProductoController {
             recepcionProductoRepositorio.eliminarRecepcionProducto(id);
             return new ResponseEntity<>("Recepción de producto eliminada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al eliminar la recepción de producto", HttpStatus.INTERNAL_SERVER_ERROR);
+
+            return new ResponseEntity<>("Error al eliminar la recepción de producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -38,7 +38,7 @@ CREATE TABLE EspecificacionEmpacado (
 
 -- Tabla Producto
 CREATE TABLE Producto (
-    id_producto INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     codigoBarras VARCHAR2(50) UNIQUE NOT NULL,
     nombre VARCHAR2(100) NOT NULL,
     precioUnitarioVenta DECIMAL(10, 2) NOT NULL,
@@ -46,8 +46,6 @@ CREATE TABLE Producto (
     cantidadPresentacion INT NOT NULL,
     unidadMedida VARCHAR2(20) NOT NULL,
     fechaExpiracion DATE,
-    id_especificacionEmpacado INT,
-    FOREIGN KEY (id_especificacionEmpacado) REFERENCES EspecificacionEmpacado(id_especificacionEmpacado)
 );
 
 -- Tabla Bodega

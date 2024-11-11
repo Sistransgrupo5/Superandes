@@ -15,7 +15,7 @@ import uniandes.edu.co.proyecto.modelo.BodegaEntity;
 import uniandes.edu.co.proyecto.repositorio.BodegaRepository;
 
 @RestController
-public class BodegasController {
+public class BodegaController {
 
     @Autowired
     private BodegaRepository bodegaRepository;
@@ -56,5 +56,22 @@ public class BodegasController {
         }
 
     }
+
+    @GetMapping("/bodegas/sucursal/{id_sucursal}")
+public ResponseEntity<?> obtenerBodegasPorSucursal(@PathVariable("id_sucursal") Integer idSucursal) {
+    try {
+        Collection<BodegaEntity> bodegas = bodegaRepository.darBodegasPorSucursal(idSucursal);
+
+        if (bodegas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                .body("No se encontraron bodegas para la sucursal especificada.");
+        }
+
+        return ResponseEntity.ok(bodegas);
+
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en la consulta de bodegas");
+    }
+}
 
 }

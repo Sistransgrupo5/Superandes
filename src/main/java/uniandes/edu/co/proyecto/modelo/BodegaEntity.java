@@ -15,45 +15,21 @@ public class BodegaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Integer id_bodega;
+    private Integer bodega_id;
     private String nombre;
     private Integer tamanio;
 
     @ManyToOne
     @JoinColumn(name = "id_sucursal", referencedColumnName = "id_sucursal")
     private SucursalEntity sucursal_id;
-    
-
-    /*@ManyToOne
-    @JoinColumn(name = "id_sucursal", referencedColumnName = "id_bodega")
-    private SucursalEntity sucursal;
 
 
-    @OneToOne
-    @JoinColumn(name = "id_info_extra_bodega", referencedColumnName = "id_bodega")
-    private InfoExtraBodegaEntity infoExtraBodega;
 
-
-    @ManyToMany
-    @JoinTable(
-        name = "ProductoBodega",
-        joinColumns = @JoinColumn(name = "id_bodega", referencedColumnName = "id_bodega"),
-        inverseJoinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id_bodega")
-    )
-    private List<ProductoEntity> productos;
-
-
-    @OneToMany(mappedBy = "Bodega", cascade = CascadeType.ALL)
-    private List<RecepcionProductoEntity> recepcionProductos; */
 
     public BodegaEntity(String nombre, Integer tamanio, SucursalEntity sucursal_id) {
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.sucursal_id = sucursal_id;
-        /*this.sucursal = sucursal;
-        this.infoExtraBodega = infoExtraBodega;
-        this.productos = productos;
-        this.recepcionProductos = recepcionProductos; */
     }
 
     public BodegaEntity() {
@@ -61,11 +37,11 @@ public class BodegaEntity {
 
 
     public Integer getId() {
-        return id_bodega;
+        return bodega_id;
     }
 
     public void setId(Integer id_bodega) {
-        this.id_bodega = id_bodega;
+        this.bodega_id = id_bodega;
     }
 
     public String getNombre() {
@@ -119,5 +95,13 @@ public class BodegaEntity {
     public void setRecepcionProductos(List<RecepcionProductoEntity> recepcionProductos) {
         this.recepcionProductos = recepcionProductos;
     } */
+
+    public SucursalEntity getSucursal_id() {
+        return sucursal_id;
+    }
+
+    public void setSucursal_id(SucursalEntity sucursal_id) {
+        this.sucursal_id = sucursal_id;
+    }
 
 }

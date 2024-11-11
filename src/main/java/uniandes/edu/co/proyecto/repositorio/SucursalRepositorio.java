@@ -38,12 +38,11 @@ public interface SucursalRepositorio extends JpaRepository<SucursalEntity, Integ
     @Query(value = "DELETE FROM Sucursal WHERE id = :id", nativeQuery = true)
     void eliminarSucursal(@Param("id") int id);
 
-    @Query(value = "SELECT DISTINCT s.*\r\n" + 
-               "FROM Sucursal s\r\n" + 
-               "JOIN Bodega b ON s.ID_SUCURSAL = b.ID_SUCURSAL\r\n" + 
-               "JOIN Producto p ON b.ID_BODEGA = p.BODEGA_ID\r\n" + 
-               "WHERE p.ID_PRODUCTO = :producto_id", nativeQuery = true)
-    Collection<SucursalEntity> darSucursalesConProductoDisponible(@Param("producto_id") Integer producto_id);
-
+    @Query(value = "SELECT DISTINCT s.* " +
+               "FROM Sucursal s " +
+               "JOIN Bodega b ON s.id_sucursal = b.id_sucursal " +
+               "JOIN Producto p ON b.id_bodega = p.bodega_id " +
+               "WHERE p.id_producto = :producto_id", nativeQuery = true)
+Collection<SucursalEntity> darSucursalesConProductoDisponible(@Param("producto_id") Integer producto_id);
 
 }

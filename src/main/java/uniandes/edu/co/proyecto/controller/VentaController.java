@@ -34,6 +34,7 @@ public class VentaController {
             }
             return new ResponseEntity<>(ventas, HttpStatus.OK);
         } catch (Exception e) {
+
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -49,17 +50,19 @@ public class VentaController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
+
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // Insertar una nueva venta
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<String> insertarVenta(@RequestBody VentaEntity venta) {
         try {
             ventaRepositorio.insertarVenta(venta.getFecha());
-            return new ResponseEntity<>("VentaEntity creada exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("Venta creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
+
             return new ResponseEntity<>("Error al crear la venta", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -69,8 +72,9 @@ public class VentaController {
     public ResponseEntity<String> actualizarVenta(@PathVariable("id") int id, @RequestBody VentaEntity venta) {
         try {
             ventaRepositorio.actualizarVenta(id, venta.getFecha());
-            return new ResponseEntity<>("VentaEntity actualizada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("Venta actualizada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
+
             return new ResponseEntity<>("Error al actualizar la venta", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -80,8 +84,9 @@ public class VentaController {
     public ResponseEntity<String> eliminarVenta(@PathVariable("id") int id) {
         try {
             ventaRepositorio.eliminarVenta(id);
-            return new ResponseEntity<>("VentaEntity eliminada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("Venta eliminada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
+
             return new ResponseEntity<>("Error al eliminar la venta", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

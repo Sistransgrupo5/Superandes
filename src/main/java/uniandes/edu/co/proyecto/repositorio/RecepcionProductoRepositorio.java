@@ -13,24 +13,24 @@ import uniandes.edu.co.proyecto.modelo.RecepcionProductoEntity;
 
 public interface RecepcionProductoRepositorio extends JpaRepository<RecepcionProductoEntity, Integer> {
 
-    @Query(value = "SELECT * FROM recepcionesProductos", nativeQuery = true)
+    @Query(value = "SELECT * FROM RecepcionProducto", nativeQuery = true)
     Collection<RecepcionProductoEntity> darRecepcionProductos();
 
-    @Query(value = "SELECT * FROM recepcionesProductos WHERE id= : id", nativeQuery = true)
+    @Query(value = "SELECT * FROM RecepcionProducto WHERE id= : id", nativeQuery = true)
     RecepcionProductoEntity darRecepcionProducto(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO recepcionesProductos(id,fechaRecepcion) VALUES(proyecto_sequence.nextval, :fechaRecepcion)", nativeQuery = true)
+    @Query(value = "INSERT INTO RecepcionProducto(id,fechaRecepcion) VALUES(proyecto_sequence.nextval, :fechaRecepcion)", nativeQuery = true)
     void insertarRecepcionProducto(@Param("fechaRecepcion") Date fechaRecepcion);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE recepcionesProductos SET fechaRecepcion=:fechaRecepcion WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE RecepcionProducto SET fechaRecepcion=:fechaRecepcion WHERE id=:id", nativeQuery = true)
     void actualizarRecepcionProducto(@Param("id") int id, @Param("fechaRecepcion") Date fechaRecepcion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM recepcionesProductos WHERE id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM RecepcionProducto WHERE id = :id", nativeQuery = true)
     void eliminarRecepcionProducto(@Param("id") int id);
 }

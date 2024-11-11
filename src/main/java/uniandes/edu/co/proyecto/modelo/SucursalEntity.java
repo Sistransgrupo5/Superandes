@@ -17,15 +17,9 @@ public class SucursalEntity {
     @Column(name = "id_sucursal")
     private Integer id_sucursal;
     private String nombre;
-    private Integer tamanio; 
+    private Integer tamanio;
     private String direccion;
     private String telefono;
-    /*  @ManyToOne
-    private CiudadEntity ciudad;
-    @OneToMany
-    private List<VentaEntity> ventas;
-    @OneToMany
-    private List<OrdenCompraEntity> ordenCompras; */
 
     public SucursalEntity(String nombre, Integer tamanio, String direccion, String telefono) {
         this.nombre = nombre;
