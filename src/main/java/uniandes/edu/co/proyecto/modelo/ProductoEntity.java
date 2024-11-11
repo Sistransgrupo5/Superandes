@@ -26,13 +26,11 @@ public class ProductoEntity {
     private String unidadMedida;
     private Date fechaExpiracion;
 
-    private String dtype;
-
     @ManyToOne
     @JoinColumn(name = "bodega_id", referencedColumnName = "bodega_id")
     private BodegaEntity bodega_id;
 
-    public ProductoEntity(String codigoBarras, String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion ,BodegaEntity bodega_id, String dtype) {
+    public ProductoEntity(String codigoBarras, String nombre, Integer precioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion ,BodegaEntity bodega_id) {
         this.codigoBarras = codigoBarras;
         this.nombre = nombre;
         this.precioUnitarioVenta = precioUnitarioVenta;
@@ -41,7 +39,6 @@ public class ProductoEntity {
         this.unidadMedida = unidadMedida;
         this.fechaExpiracion = fechaExpiracion;
         this.bodega_id = bodega_id;
-        this.dtype = dtype;
     }
     public ProductoEntity() {
     }
@@ -122,11 +119,4 @@ public class ProductoEntity {
         this.bodega_id = bodega_id;
     }
 
-    public String getDtype() {
-        return dtype;
-    }
-
-    public void setDtype(String dtype) {
-        this.dtype = dtype;
-    }
 }
