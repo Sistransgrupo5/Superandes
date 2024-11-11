@@ -133,7 +133,7 @@ public class ProductoController {
     // Obtener todos los productos
     @GetMapping("/productos")
     public Collection<ProductoEntity> obtenerProductos() {
-        return productoRepository.findAll();
+        return productoRepository.darProductos();
     }
 
     // Crear un nuevo producto
