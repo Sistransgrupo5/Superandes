@@ -51,7 +51,7 @@ public class SucursalController {
             }
             if (sucursales.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("No se encontraron sucursales con el criterio especificado.");
+                        .body("No se encontraron sucursales con el producto especificado.");
             }
             return ResponseEntity.ok(sucursales);
         } catch (Exception e) {
